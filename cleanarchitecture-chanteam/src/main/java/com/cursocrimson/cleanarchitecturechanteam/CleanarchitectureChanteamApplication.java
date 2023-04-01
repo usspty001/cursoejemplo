@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CleanarchitectureChanteamApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(CleanarchitectureChanteamApplication.class, args);
 	}
 
