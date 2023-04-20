@@ -32,5 +32,6 @@ public class Controller implements Serializable {
     @GetMapping(path = "getStringTest", produces = { "application/json", "application/xml" })
     public void getStringTest() {
         pokeBusiness.getPokemonById();
+        pokeBusiness.getPokemonByName("psyduck");
     }
 }

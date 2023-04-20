@@ -4,10 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
 
 import com.cursocrimson.apipokemon.models.Root;
+import com.cursocrimson.apipokemon.services.PokemonApiService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service("PokeBusiness")
@@ -15,7 +17,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class PokeBusiness implements Serializable {
 	private static final long serialVersionUID = -1585214153106593672L;
 
-	public void getPokemonById(){
+	@Autowired
+	private transient PokemonApiService pokeApiService;
+
+	public void getPokemonById() {
 		ObjectMapper om = new ObjectMapper();
 		try {
 //            Root root = om.readValue(returnJson(), Root.class);
@@ -29,5 +34,21 @@ public class PokeBusiness implements Serializable {
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
+	}
+
+	public void getPokemonByName(String value) {
+		ObjectMapper om = new ObjectMapper();
+
+		try {
+			String jsonPokemon = pokeApiService.getPokemonInfoByName(value);
+			if (jsonPokemon !=null || jsonPokemon.length()>0) {
+				Root root = om.readValue(jsonPokemon, Root.class);
+
+				System.out.println(root);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
 	}
 }
