@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cursocrimson.apipokemon.business.PokeBusiness;
+import com.cursocrimson.apipokemon.business.PokemonApiBusiness;
+import com.cursocrimson.pokemon.business.PokemonBusiness;
 
 @RestController
 public class Controller implements Serializable {
@@ -17,7 +18,7 @@ public class Controller implements Serializable {
     private static final long serialVersionUID = -1585214153106593672L;
 
     @Autowired
-    private transient PokeBusiness pokeBusiness;
+    private transient PokemonBusiness pokemonBusiness;
 
     @RequestMapping(value="/", method= RequestMethod.GET)
     @ResponseBody
@@ -31,7 +32,7 @@ public class Controller implements Serializable {
 
     @GetMapping(path = "getStringTest", produces = { "application/json", "application/xml" })
     public void getStringTest() {
-        pokeBusiness.getPokemonById();
-        pokeBusiness.getPokemonByName("psyduck");
+    	
+    	pokemonBusiness.addPokemonToRoster("pikachu");
     }
 }

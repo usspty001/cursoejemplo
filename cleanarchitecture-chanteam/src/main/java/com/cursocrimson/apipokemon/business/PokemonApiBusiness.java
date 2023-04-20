@@ -12,9 +12,9 @@ import com.cursocrimson.apipokemon.models.Root;
 import com.cursocrimson.apipokemon.services.PokemonApiService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Service("PokeBusiness")
+@Service("PokemonApiBusiness")
 @EnableConfigurationProperties
-public class PokeBusiness implements Serializable {
+public class PokemonApiBusiness implements Serializable {
 	private static final long serialVersionUID = -1585214153106593672L;
 
 	@Autowired
@@ -36,19 +36,19 @@ public class PokeBusiness implements Serializable {
 		}
 	}
 
-	public void getPokemonByName(String value) {
+	public Root getPokemonByName(String value) {
 		ObjectMapper om = new ObjectMapper();
-
+		Root root = new Root();
 		try {
 			String jsonPokemon = pokeApiService.getPokemonInfoByName(value);
-			if (jsonPokemon !=null || jsonPokemon.length()>0) {
-				Root root = om.readValue(jsonPokemon, Root.class);
+			if (jsonPokemon != null || jsonPokemon.length() > 0) {
+				 root = om.readValue(jsonPokemon, Root.class);
 
 				System.out.println(root);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-
+		return root;
 	}
 }
