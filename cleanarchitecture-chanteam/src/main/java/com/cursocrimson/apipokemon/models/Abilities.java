@@ -4,9 +4,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class Type{
+public class Abilities{
+	
+    @JsonProperty("ability")
+    Ability ability;
+    
+    @JsonProperty("is_hidden")
+    boolean is_hidden;
+    
     @JsonProperty("slot")
     int slot;
-    @JsonProperty("type")
-    Type type;
 }

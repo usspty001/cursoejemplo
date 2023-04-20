@@ -5,10 +5,10 @@ import lombok.Data;
 
 @Data
 public class Ability{
-    @JsonProperty("ability")
-    Ability ability;
-    @JsonProperty("is_hidden")
-    boolean is_hidden;
-    @JsonProperty("slot")
-    int slot;
+	
+    @JsonProperty("name")
+    String name;
+    
+    @JsonProperty("url")
+    String url;
 }

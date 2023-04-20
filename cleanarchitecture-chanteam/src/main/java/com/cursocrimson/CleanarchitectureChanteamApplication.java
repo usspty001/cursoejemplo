@@ -1,4 +1,4 @@
-package com.cursocrimson.cleanarchitecturechanteam;
+package com.cursocrimson;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

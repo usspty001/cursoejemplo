@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class Form{
-    @JsonProperty("name")
-    String name;
-    @JsonProperty("url")
-    String url;
+public class Types{
+    @JsonProperty("slot")
+    int slot;
+    @JsonProperty("type")
+    Type2 type2;
 }
