@@ -71,7 +71,7 @@ public class PokemonBusiness implements Serializable {
 	
 	private String getPokemonImage(Root value)
 	{
-		return "";
+		return "prueba";
 	}
 	
 	private Stats getPokemonStat(Root value)
