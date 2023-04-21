@@ -15,19 +15,19 @@ public class Root{
     @JsonProperty("base_experience")
     int base_experience;
 
-    @JsonProperty("abilities") //YA
+    @JsonProperty("abilities")
     ArrayList<Abilities> abilities;
     
-    @JsonProperty("forms") //YA
+    @JsonProperty("forms")
     ArrayList<Forms> forms;
     
-    @JsonProperty("game_indices") //YA
+    @JsonProperty("game_indices")
     ArrayList<GameIndex> game_indices;
     
-    @JsonProperty("stats") //YA
+    @JsonProperty("stats")
     ArrayList<Stats> stats;
     
-    @JsonProperty("types") //YA
+    @JsonProperty("types")
     ArrayList<Types> types;
     
     @JsonProperty("past_types")
@@ -36,7 +36,7 @@ public class Root{
     @JsonProperty("held_items")
     ArrayList<Object> held_items;
     
-    @JsonProperty("moves") //YA
+    @JsonProperty("moves")
     ArrayList<Moves> moves;
     
     @JsonProperty("height")

@@ -290,7 +290,8 @@ public class PokemonBusiness implements Serializable {
 	}
 
 	private String getPokemonImage(Root value) {
-		return "prueba";
+		String image = value.getSprites().getFront_default();
+		return image;
 	}
 
 	private Stats getPokemonStat(Root value) {
