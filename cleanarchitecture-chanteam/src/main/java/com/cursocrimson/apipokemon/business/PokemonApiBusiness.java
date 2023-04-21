@@ -20,22 +20,11 @@ public class PokemonApiBusiness implements Serializable {
 	@Autowired
 	private transient PokemonApiService pokeApiService;
 
-	public void getPokemonById() {
-		ObjectMapper om = new ObjectMapper();
-		try {
-//            Root root = om.readValue(returnJson(), Root.class);
-			String ruta = "D:\\CLEAN_ARCHITECTURE_PROJECT\\cursoejemplo\\cleanarchitecture-chanteam\\src\\main\\resources\\pokemonJson.json";
-			Root root = om.readValue(new File(ruta), Root.class);
-			if (root != null) {
-				System.out.println(root);
-
-				String d = "";
-			}
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
-		}
-	}
-
+	
+	/**
+	 *getPokemonByName  --- Invoke Api Service to get the Pokemon information based on the name. Return a Root object.
+	 * @author CLDEVTEAM
+	 */
 	public Root getPokemonByName(String value) {
 		ObjectMapper om = new ObjectMapper();
 		Root root = new Root();
