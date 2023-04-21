@@ -54,4 +54,23 @@ public class PokemonController implements Serializable {
 
 		return pokemonBusiness.deletePokemonFromRosterById(id);
 	}
+	
+	
+	@RequestMapping(value = "/party", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public String addPokemonToPartyById(@RequestBody PokemonSearch value) {
+
+		return pokemonBusiness.addPokemonToPartyById(value);
+	}
+	
+	@RequestMapping(value = "/party", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public String getAllPokemonFromParty() {
+
+		return pokemonBusiness.getAllPokemonFromParty();
+	}
+	
+	@RequestMapping(value = "/party/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public String deletePokemonFromPartyById(@PathVariable int id) {
+
+		return pokemonBusiness.deletePokemonFromPartyById(id);
+	}
 }
