@@ -1,7 +1,5 @@
 package com.cursocrimson.apipokemon.business;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +22,9 @@ public class PokemonApiBusiness implements Serializable {
 	/**
 	 *getPokemonByName  --- Invoke Api Service to get the Pokemon information based on the name. Return a Root object.
 	 * @author CLDEVTEAM
+	 * @throws Exception 
 	 */
-	public Root getPokemonByName(String value) {
+	public Root getPokemonByName(String value) throws Exception {
 		ObjectMapper om = new ObjectMapper();
 		Root root = new Root();
 		try {
@@ -35,7 +34,7 @@ public class PokemonApiBusiness implements Serializable {
 
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			throw new Exception(e.getMessage());
 		}
 		return root;
 	}
