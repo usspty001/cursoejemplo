@@ -22,27 +22,36 @@ public class PokemonController implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 4980844469447672162L;
-	
+
 	@Autowired
 	private transient PokemonBusiness pokemonBusiness;
-	
-	
+
 	@RequestMapping(value = "/roster", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String roster(@RequestBody PokemonSearch value) {
 
 		return pokemonBusiness.addPokemonToRoster(value.getName().toLowerCase());
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String getPokemonByName(@RequestParam("name") String name) {
 
 		return pokemonBusiness.getPokemonFromRoster(name.toLowerCase());
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String getPokemonById(@PathVariable int id) {
 
 		return pokemonBusiness.getPokemonFromRosterById(id);
 	}
 
+	@RequestMapping(value = "/roster", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public String getRoster() {
+		return pokemonBusiness.getAllPokemonFromRoster();
+	}
+	
+	@RequestMapping(value = "/roster/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public String deletePokemonFromRosterById(@PathVariable int id) {
+
+		return pokemonBusiness.deletePokemonFromRosterById(id);
+	}
 }

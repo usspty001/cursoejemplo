@@ -34,7 +34,7 @@ public class PokemonBusiness implements Serializable {
 	private Map<String, PokemonRoot> queueRoster = new HashMap<>();
 	private Map<Integer,String> queueRosterID = new HashMap<>();
 
-	private final int maxSizeQueueRoster = 2;
+	private final int maxSizeQueueRoster = 10;
 
 	public String addPokemonToRoster(String value) {
 		String message = "";
@@ -92,6 +92,55 @@ public class PokemonBusiness implements Serializable {
 
 			if (queueRosterID.containsKey(id)) {
 				message = this.getPokemonFromRoster(queueRosterID.get(id));
+			} else {
+				objPokemonError.setError(
+						String.format("%1$s : %2$s", "The following pokemon id doesnt exist on the roster", id));
+				message = om.writeValueAsString(objPokemonError);
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return message;
+	}
+	
+	public String getAllPokemonFromRoster()
+	{
+		String message = "";
+		PokemonRoot objPokemonRoot = new PokemonRoot();
+		ObjectMapper om = new ObjectMapper();
+		PokemonError objPokemonError = new PokemonError();
+		try {
+
+			if (queueRoster.size() >0) {
+				List<PokemonRoot> listOfPokemons = new ArrayList<PokemonRoot>(queueRoster.values());
+				message = om.writeValueAsString(listOfPokemons);
+			} else {
+				objPokemonError.setError("Roster its empty");
+				message = om.writeValueAsString(objPokemonError);
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return message;
+	}
+	
+	public String deletePokemonFromRosterById(int id) {
+		String message = "";
+		PokemonRoot objPokemonRoot = new PokemonRoot();
+		ObjectMapper om = new ObjectMapper();
+		PokemonError objPokemonError = new PokemonError();
+		try {
+
+			if (queueRosterID.containsKey(id)) {
+				String pokemonName=queueRosterID.get(id);
+				message = this.getPokemonFromRoster(pokemonName);
+				queueRoster.remove(pokemonName);
+				queueRoster.remove(id);
+				
 			} else {
 				objPokemonError.setError(
 						String.format("%1$s : %2$s", "The following pokemon id doesnt exist on the roster", id));
