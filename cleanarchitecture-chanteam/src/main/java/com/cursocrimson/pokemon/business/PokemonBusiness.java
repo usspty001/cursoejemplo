@@ -50,8 +50,9 @@ public class PokemonBusiness implements Serializable {
 	 * @apiNote Get the Pokemon information. If doesn't exist return an error
 	 *          message, otherwise add the pokemon to roster
 	 * @author CLDEVTEAM
+	 * @throws Exception 
 	 */
-	public String addPokemonToRoster(String value) {
+	public String addPokemonToRoster(String value) throws Exception {
 		String message = "";
 		PokemonRoot objPokemonRoot = new PokemonRoot();
 		ObjectMapper om = new ObjectMapper();
@@ -68,7 +69,7 @@ public class PokemonBusiness implements Serializable {
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			 throw new Exception(e.getMessage());
 
 		}
 
@@ -85,8 +86,9 @@ public class PokemonBusiness implements Serializable {
 	 *          doesn't exist return an error message, otherwise get the pokemon
 	 *          information from the roster
 	 * @author CLDEVTEAM
+	 * @throws Exception 
 	 */
-	public String getPokemonFromRoster(String value) {
+	public String getPokemonFromRoster(String value) throws Exception {
 		String message = "";
 		PokemonRoot objPokemonRoot = new PokemonRoot();
 		ObjectMapper om = new ObjectMapper();
@@ -103,7 +105,7 @@ public class PokemonBusiness implements Serializable {
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw new Exception(e.getMessage());
 		}
 
 		return message;
@@ -119,8 +121,9 @@ public class PokemonBusiness implements Serializable {
 	 *          doesn't exist return an error message, otherwise get the pokemon
 	 *          information from the roster
 	 * @author CLDEVTEAM
+	 * @throws Exception 
 	 */
-	public String getPokemonFromRosterById(int id) {
+	public String getPokemonFromRosterById(int id) throws Exception {
 		String message = "";
 		ObjectMapper om = new ObjectMapper();
 		PokemonError objPokemonError = new PokemonError();
@@ -135,7 +138,7 @@ public class PokemonBusiness implements Serializable {
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw new Exception(e.getMessage());
 		}
 
 		return message;
@@ -151,8 +154,9 @@ public class PokemonBusiness implements Serializable {
 	 *          an error message, otherwise get all the pokemon information from the
 	 *          roster
 	 * @author CLDEVTEAM
+	 * @throws Exception 
 	 */
-	public String getAllPokemonFromRoster() {
+	public String getAllPokemonFromRoster() throws Exception {
 		String message = "";
 		ObjectMapper om = new ObjectMapper();
 		PokemonError objPokemonError = new PokemonError();
@@ -167,7 +171,7 @@ public class PokemonBusiness implements Serializable {
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw new Exception(e.getMessage());
 		}
 
 		return message;
@@ -183,8 +187,9 @@ public class PokemonBusiness implements Serializable {
 	 *          message its returned, otherwise the pokemon its deleted from the
 	 *          roster and the party. Pokemon removed info its returned
 	 * @author CLDEVTEAM
+	 * @throws Exception 
 	 */
-	public String deletePokemonFromRosterById(int id) {
+	public String deletePokemonFromRosterById(int id) throws Exception {
 		String message = "";
 		ObjectMapper om = new ObjectMapper();
 		PokemonError objPokemonError = new PokemonError();
@@ -206,7 +211,7 @@ public class PokemonBusiness implements Serializable {
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw new Exception(e.getMessage());
 		}
 
 		return message;
@@ -224,8 +229,9 @@ public class PokemonBusiness implements Serializable {
 	 *          exist an error message its returned, otherwise the pokemon its added
 	 *          to the party
 	 * @author CLDEVTEAM
+	 * @throws Exception 
 	 */
-	public String addPokemonToPartyById(PokemonSearch value) {
+	public String addPokemonToPartyById(PokemonSearch value) throws Exception {
 		String message = "";
 		PokemonRoot objPokemonRoot = new PokemonRoot();
 		ObjectMapper om = new ObjectMapper();
@@ -247,7 +253,7 @@ public class PokemonBusiness implements Serializable {
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw new Exception(e.getMessage());
 		}
 
 		return message;
@@ -262,8 +268,9 @@ public class PokemonBusiness implements Serializable {
 	 * @apiNote Check If the party has information if doesn't had an error message
 	 *          its returned otherwise all pokemon from party are returned
 	 * @author CLDEVTEAM
+	 * @throws Exception 
 	 */
-	public String getAllPokemonFromParty() {
+	public String getAllPokemonFromParty() throws Exception {
 		String message = "";
 		ObjectMapper om = new ObjectMapper();
 		PokemonError objPokemonError = new PokemonError();
@@ -278,7 +285,7 @@ public class PokemonBusiness implements Serializable {
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw new Exception(e.getMessage());
 		}
 
 		return message;
@@ -294,8 +301,9 @@ public class PokemonBusiness implements Serializable {
 	 *          returned otherwise the pokemon its removed from the party and the
 	 *          pokemon info its returned
 	 * @author CLDEVTEAM
+	 * @throws Exception 
 	 */
-	public String deletePokemonFromPartyById(int id) {
+	public String deletePokemonFromPartyById(int id) throws Exception {
 		String message = "";
 		ObjectMapper om = new ObjectMapper();
 		PokemonError objPokemonError = new PokemonError();
@@ -315,7 +323,7 @@ public class PokemonBusiness implements Serializable {
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw new Exception(e.getMessage());
 		}
 
 		return message;
@@ -331,8 +339,9 @@ public class PokemonBusiness implements Serializable {
 	 *          doesn't exist return an error message, otherwise get the pokemon
 	 *          information from the party
 	 * @author CLDEVTEAM
+	 * @throws Exception 
 	 */
-	private String getPokemonFromParty(String value) {
+	private String getPokemonFromParty(String value) throws Exception {
 		String message = "";
 		PokemonRoot objPokemonRoot = new PokemonRoot();
 		ObjectMapper om = new ObjectMapper();
@@ -349,7 +358,7 @@ public class PokemonBusiness implements Serializable {
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw new Exception(e.getMessage());
 		}
 
 		return message;
@@ -363,14 +372,15 @@ public class PokemonBusiness implements Serializable {
 	 * @apiNote Invoke the getPokemonByName method to try to get pokemon information
 	 *          based on the name from PokemApiBusiness
 	 * @author CLDEVTEAM
+	 * @throws Exception 
 	 */
-	private Root getPokemonInformationByName(String value) {
+	private Root getPokemonInformationByName(String value) throws Exception {
 		Root objPokeApiInfo = new Root();
 		try {
 			objPokeApiInfo = pokemonApiBusiness.getPokemonByName(value);
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw new Exception(e.getMessage());
 		}
 
 		return objPokeApiInfo;
@@ -383,8 +393,9 @@ public class PokemonBusiness implements Serializable {
 	 * @return PokemonRoot object value.
 	 * @apiNote Map Pokemon information from the API model to CL Pokemon Model
 	 * @author CLDEVTEAM
+	 * @throws Exception 
 	 */
-	private PokemonRoot setValuesToObject(Root value) {
+	private PokemonRoot setValuesToObject(Root value) throws Exception {
 		PokemonRoot objPokemonRoot = new PokemonRoot();
 		try {
 			objPokemonRoot = mapper.map(value, PokemonRoot.class);
@@ -392,9 +403,8 @@ public class PokemonBusiness implements Serializable {
 				objPokemonRoot.setImage(this.getPokemonImage(value));
 				objPokemonRoot.setStats(this.getPokemonStat(value));
 			}
-//			objPokemonRoot.setId(value.getId());
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw new Exception(e.getMessage());
 		}
 
 		return objPokemonRoot;
@@ -474,8 +484,9 @@ public class PokemonBusiness implements Serializable {
 	 *          checks if the pokemon exist on roster if exist an error message its
 	 *          returned otherwise the pokemon its added to the roster
 	 * @author CLDEVTEAM
+	 * @throws Exception 
 	 */
-	private String addToRoster(PokemonRoot objPokemonRoot) {
+	private String addToRoster(PokemonRoot objPokemonRoot) throws Exception {
 		String message = "";
 		ObjectMapper om = new ObjectMapper();
 		PokemonError objPokemonError = new PokemonError();
@@ -499,7 +510,7 @@ public class PokemonBusiness implements Serializable {
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw new Exception(e.getMessage());
 		}
 		return message;
 	}
@@ -515,8 +526,9 @@ public class PokemonBusiness implements Serializable {
 	 *          checks if the pokemon exist on party if exist an error message its
 	 *          returned otherwise the pokemon its added to the party
 	 * @author CLDEVTEAM
+	 * @throws Exception 
 	 */
-	private String addToParty(PokemonRoot objPokemonRoot) {
+	private String addToParty(PokemonRoot objPokemonRoot) throws Exception {
 		String message = "";
 		ObjectMapper om = new ObjectMapper();
 		PokemonError objPokemonError = new PokemonError();
@@ -540,7 +552,7 @@ public class PokemonBusiness implements Serializable {
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw new Exception(e.getMessage());
 		}
 		return message;
 	}
