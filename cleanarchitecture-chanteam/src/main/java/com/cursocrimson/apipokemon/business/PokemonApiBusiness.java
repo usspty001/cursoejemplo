@@ -44,7 +44,6 @@ public class PokemonApiBusiness implements Serializable {
 			if (jsonPokemon != null || jsonPokemon.length() > 0) {
 				 root = om.readValue(jsonPokemon, Root.class);
 
-				System.out.println(root);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
