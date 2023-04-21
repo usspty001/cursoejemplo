@@ -370,7 +370,7 @@ public class PokemonBusiness implements Serializable {
 		try {
 			if (queueParty.size() >= maxSizeQueueParty) {
 				objPokemonError
-						.setError(String.format("%1$s : %2$s", "Max size was reached for party", queueRoster.size()));
+						.setError(String.format("%1$s : %2$s", "Max size was reached for party", queueParty.size()));
 				message = om.writeValueAsString(objPokemonError);
 			} else {
 				if (!queueParty.containsKey(objPokemonRoot.getName())) {

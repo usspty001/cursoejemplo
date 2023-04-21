@@ -19,15 +19,10 @@ public class PokemonApiService implements Serializable {
 
 	private static final long serialVersionUID = 2681484394877938651L;
 
-	public Root getPokemonInfoByName2(String value) {
-		RestTemplate restTemplate = new RestTemplate();
-		Root response = restTemplate.getForObject("https://pokeapi.co/api/v2/pokemon/pikachu", Root.class);
-
-//                Root root = response.getBody();
-
-		return response;
-	}
-
+	/**
+	 *getPokemonInfoByName  --- Get Pokemon Information From Pokemon API by the pokemon Name . Return a string message json value.
+	 * @author CLDEVTEAM
+	 */
 	public String getPokemonInfoByName(String value) {
 		ObjectMapper om = new ObjectMapper();
 		
