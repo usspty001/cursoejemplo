@@ -32,6 +32,7 @@ public class PokemonBusiness implements Serializable {
 
 	// private final List<PokemonRoot> queueRoster = new ArrayList<>();
 	private Map<String, PokemonRoot> queueRoster = new HashMap<>();
+	private Map<Integer,String> queueRosterID = new HashMap<>();
 
 	private final int maxSizeQueueRoster = 2;
 
@@ -54,6 +55,51 @@ public class PokemonBusiness implements Serializable {
 		} catch (Exception e) {
 			// TODO: handle exception
 
+		}
+
+		return message;
+	}
+
+	public String getPokemonFromRoster(String value) {
+		String message = "";
+		PokemonRoot objPokemonRoot = new PokemonRoot();
+		ObjectMapper om = new ObjectMapper();
+		PokemonError objPokemonError = new PokemonError();
+		try {
+
+			if (queueRoster.containsKey(value)) {
+				objPokemonRoot = queueRoster.get(value);
+				message = om.writeValueAsString(objPokemonRoot);
+			} else {
+				objPokemonError.setError(
+						String.format("%1$s : %2$s", "The following pokemon doesnt exist on the roster", value));
+				message = om.writeValueAsString(objPokemonError);
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return message;
+	}
+	
+	public String getPokemonFromRosterById(int id) {
+		String message = "";
+		PokemonRoot objPokemonRoot = new PokemonRoot();
+		ObjectMapper om = new ObjectMapper();
+		PokemonError objPokemonError = new PokemonError();
+		try {
+
+			if (queueRosterID.containsKey(id)) {
+				message = this.getPokemonFromRoster(queueRosterID.get(id));
+			} else {
+				objPokemonError.setError(
+						String.format("%1$s : %2$s", "The following pokemon id doesnt exist on the roster", id));
+				message = om.writeValueAsString(objPokemonError);
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 
 		return message;
@@ -143,6 +189,7 @@ public class PokemonBusiness implements Serializable {
 			} else {
 				if (!queueRoster.containsKey(objPokemonRoot.getName())) {
 					queueRoster.put(objPokemonRoot.getName(), objPokemonRoot);
+					queueRosterID.put(objPokemonRoot.getId(),objPokemonRoot.getName());
 					message = om.writeValueAsString(objPokemonRoot);
 
 				} else {
@@ -158,4 +205,5 @@ public class PokemonBusiness implements Serializable {
 		}
 		return message;
 	}
+
 }
