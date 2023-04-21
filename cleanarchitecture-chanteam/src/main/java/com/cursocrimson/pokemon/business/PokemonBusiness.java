@@ -1,6 +1,10 @@
 package com.cursocrimson.pokemon.business;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -10,6 +14,7 @@ import com.cursocrimson.apipokemon.business.PokemonApiBusiness;
 import com.cursocrimson.apipokemon.models.Root;
 import com.cursocrimson.apipokemon.models.Stat;
 import com.cursocrimson.pokemon.helper.Mapper;
+import com.cursocrimson.pokemon.models.PokemonError;
 import com.cursocrimson.pokemon.models.PokemonRoot;
 import com.cursocrimson.pokemon.models.Stats;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,21 +30,30 @@ public class PokemonBusiness implements Serializable {
 	@Autowired
 	private transient Mapper mapper;
 
+	// private final List<PokemonRoot> queueRoster = new ArrayList<>();
+	private Map<String, PokemonRoot> queueRoster = new HashMap<>();
+
+	private final int maxSizeQueueRoster = 2;
+
 	public String addPokemonToRoster(String value) {
 		String message = "";
 		PokemonRoot objPokemonRoot = new PokemonRoot();
 		ObjectMapper om = new ObjectMapper();
+		PokemonError objPokemonError = new PokemonError();
 		try {
 			objPokemonRoot = this.setValuesToObject(getPokemonInformationByName(value));
-			if(objPokemonRoot.getId()>0)
-			{
-				message = om.writeValueAsString(objPokemonRoot);
+			if (objPokemonRoot.getId() > 0) {
 
-				System.out.print(objPokemonRoot);
+				message = addToRoster(objPokemonRoot);
+			} else {
+				objPokemonError.setError(
+						String.format("%1$s : %2$s", "The following pokemon cant be found please try again", value));
+				message = om.writeValueAsString(objPokemonError);
 			}
 
 		} catch (Exception e) {
 			// TODO: handle exception
+
 		}
 
 		return message;
@@ -108,12 +122,40 @@ public class PokemonBusiness implements Serializable {
 					objStat.setSpeed(baseStatValue);
 					break;
 				default:
-					
+
 					break;
 				}
 
 			}
 		}
 		return objStat;
+	}
+
+	private String addToRoster(PokemonRoot objPokemonRoot) {
+		String message = "";
+		ObjectMapper om = new ObjectMapper();
+		PokemonError objPokemonError = new PokemonError();
+		try {
+			if (queueRoster.size() >= maxSizeQueueRoster) {
+				objPokemonError
+						.setError(String.format("%1$s : %2$s", "Max size was reached for rooster", queueRoster.size()));
+				message = om.writeValueAsString(objPokemonError);
+			} else {
+				if (!queueRoster.containsKey(objPokemonRoot.getName())) {
+					queueRoster.put(objPokemonRoot.getName(), objPokemonRoot);
+					message = om.writeValueAsString(objPokemonRoot);
+
+				} else {
+					objPokemonError.setError(
+							String.format("%1$s : %2$s", "Pokemon exist on roster", objPokemonRoot.getName()));
+					message = om.writeValueAsString(objPokemonError);
+				}
+
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return message;
 	}
 }
